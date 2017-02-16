@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="index.css" type="text/css" media="all" />
+        <script src="http://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <!-- component template -->
+        <script type="text/x-template" id="grid-template">
+            <table>
+                <thead>
+                    <tr>
+                        <th v-for="key in columns" 
+                        @click="sortBy(key)">
+                        {{ key | capitalize }}
+                        <span class="arrow" ></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="entry in filteredData">
+                        <td v-for="key in columns">
+                            {{entry[key]}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </script>
+
+        <div id="demo">
+            <form id="search">
+                Search <input class="search" name="query" v-model="searchQuery" />
+            </form>
+            <demo-grid
+                :data="gridData"
+                :columns="gridColumns"
+                :filter-key="searchQuery">
+            </demo-grid>
+        </div>
+        <script  src="./index.js" charset="utf-8"> </script>
+    </body>
+</html>
+    
